@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{FEF37D50-9199-4200-9766-D22DD42B7283}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Win32</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>sf2wav</RootNamespace>
+    <AssemblyName>sf2wav</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <IntermediateOutputPath>$(SolutionDir)\..\build\.obj\$(Configuration)\</IntermediateOutputPath>
+    <WarningLevel>4</WarningLevel>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <OutputPath>$(SolutionDir)\..\build\$(Configuration)-$(Platform)\</OutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)\..\build\.obj\</BaseIntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'Win32' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <StartAction>Project</StartAction>
+    <StartArguments>"F:\home\oio\Muse\audio-samples\sf2\SFBank\4MB GMGSMT.sf2"</StartArguments>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win64' ">
+    <IntermediateOutputPath>obj\Win64\Release</IntermediateOutputPath>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win64' ">
+    <IntermediateOutputPath>obj\Win64\Debug</IntermediateOutputPath>
+    <DebugType>
+    </DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition">
+    </Reference>
+    <Reference Include="System.Core">
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Common.cs" />
+    <Compile Include="src\DragDropFormsExtension.cs" />
+    <Compile Include="src\IOHelper.cs" />
+    <Compile Include="src\Modules\MStringHelpers.cs" />
+    <Compile Include="src\Modules\Range.cs" />
+    <Compile Include="src\Modules\SoundFontModel.cs" />
+    <Compile Include="src\on.riffwave.iff_form\CHUNK.cs" />
+    <Compile Include="src\on.riffwave.iff_form\ChunkCollection.cs" />
+    <Compile Include="src\on.riffwave.iff_form\ChunkFact.cs" />
+    <Compile Include="src\on.riffwave.iff_form\INFO.cs" />
+    <Compile Include="src\on.riffwave.iff_form\RiffForm.cs" />
+    <Compile Include="src\on.riffwave.iff_form\SUBCHUNK.cs" />
+    <Compile Include="src\on.riffwave.iff_form\WaveFormat.cs" />
+    <Compile Include="src\on.riffwave.iff_form\WaveFormatEncoding.cs" />
+    <Compile Include="src\on.riffwave.iff_form\wnfo.cs" />
+    <Compile Include="src\on.riffwave.iff_form\ZSTR.cs" />
+    <Compile Include="src\on.riffwave.iff_form\_cue.cs" />
+    <Compile Include="src\on.riffwave.iff_form\_inst.cs" />
+    <Compile Include="src\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\MidiHelper.cs" />
+    <Compile Include="src\Modules\SampleListItem.cs" />
+    <Compile Include="src\Modules\sf2str.cs" />
+    <Compile Include="src\Modules\SFBank.cs" />
+    <Compile Include="src\Modules\StringUtils.cs" />
+    <Compile Include="src\Program.cs" />
+    <Compile Include="src\Modules\SoundFont2_Index.cs" />
+    <Compile Include="src\on.soundfont_2_41\sf_spec.cs" />
+    <Compile Include="src\on.soundfont_2_41\SoundFont2.cs" />
+    <Compile Include="src\on.soundfont_2_41\SoundFont2.GeneratorConstantType.cs" />
+    <Compile Include="src\wav\IFFCHUNK.cs" />
+    <Compile Include="src\wav\INST.cs" />
+    <Compile Include="src\wav\iver.cs" />
+    <Compile Include="src\wav\LISTINFO.cs" />
+    <Compile Include="src\wav\ListType.cs" />
+    <Compile Include="src\wav\RiffType.cs" />
+    <Compile Include="src\wav\SMPLOOP.cs" />
+    <Compile Include="src\wav\WaveWriter.cs" />
+    <Compile Include="src\wav\WaveFormatEncoding.cs" />
+    <Compile Include="src\wav\WAVE_FMT.cs" />
+    <Compile Include="src\WriterExt.cs" />
+    <Compile Include="src\wav\WZSTR.cs" />
+    <Compile Include="src\wav\ZSTR.cs" />
+    <Compile Include="src\WinTheme.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="src\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
