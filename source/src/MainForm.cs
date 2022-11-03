@@ -43,7 +43,8 @@ namespace sf2wav
       WindowsInterop.WindowsTheme.HandleTheme(lvRight);
       ColsPreset();
     }
-    
+
+    #region Column Header Initialization
     void ColsPreset()
     {
       lvRight.Columns.Clear();
@@ -64,7 +65,16 @@ namespace sf2wav
       lvRight.Columns.Add("Cent");
       lvRight.Columns.Add("Link-Mode");
     }
+
+
+    void AutoresizeColumns()
+    {
+      lvLeft.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+      lvRight.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+    }
     
+    #endregion
+
     void OnSampleHeader(SoundFont2.SHDR shdr)
     {
       lvRight.Items.Add(
@@ -137,28 +147,6 @@ namespace sf2wav
       LoadInfo();
     }
     
-    void ThreadReset(Action mthd)
-    {
-      if (loader==null)
-      {
-        loader = new System.Threading.Thread(new System.Threading.ThreadStart(mthd));
-      }
-      else if (loader.IsAlive)
-      {
-        loader.Abort();
-        loader.Join();
-        loader = null;
-      }
-      loader = new System.Threading.Thread(new System.Threading.ThreadStart(mthd));
-    }
-
-    void LoadBanks(object sender, EventArgs e)
-    {
-      IsSampleMode = false;
-
-      if (InvokeRequired) BeginInvoke((Action)LoadInfo);
-      else LoadInfo();
-    }
 
     System.Threading.Thread loader;
 
@@ -194,17 +182,36 @@ namespace sf2wav
       Text = $"sf2wav — [{Model.SoundFontFile.Name}]";
     }
 
+    #region Thread Dispatcher/Loader(s)
+
+    void ThreadReset(Action mthd)
+    {
+      if (loader==null)
+      {
+        loader = new System.Threading.Thread(new System.Threading.ThreadStart(mthd));
+      }
+      else if (loader.IsAlive)
+      {
+        loader.Abort();
+        loader.Join();
+        loader = null;
+      }
+      loader = new System.Threading.Thread(new System.Threading.ThreadStart(mthd));
+    }
+
+    void LoadBanks(object sender, EventArgs e)
+    {
+      IsSampleMode = false;
+
+      if (InvokeRequired) BeginInvoke((Action)LoadInfo);
+      else LoadInfo();
+    }
     void LoadInfo()
     {
       ThreadReset(LoadMethod);
       loader.Start();
     }
-    
-    void AutoresizeColumns()
-    {
-      lvLeft.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-      lvRight.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-    }
+    #endregion
 
     void DumpSamplesAction()
     {
