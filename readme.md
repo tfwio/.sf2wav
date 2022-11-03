@@ -51,17 +51,30 @@ So generally if you click dump samples, the samples will be placed along-side th
 HOW TO BUILD
 ===================
 
+**USE VISUAL STUDIO or VISUAL STUDIO COMMUNITY IDE**
+
+Load up the solution from the `./.sln/` sub-directory into your Visual Studio IDE.
+
+**OR USING A BATCH SCRIPT**
+
 There are a few scripts to help get you started building from the command line but generally they go as follows.
 
+there is a `common-path.bat` script which simply holds where msbuild is looking like:
 ```cmd
-#! cmd.exe /c
 @echo off
-REM set msbuild_path=C:\Program Files (x86)\msbuild\14.0\bin
-set msbuild_path=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin
+set msbuild_path=C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin
 set PATH=%PATH%;%msbuild_path%
-msbuild /m ".sln\\sf2wav.sln" "/t:sf2wav" "/p:Platform=Any CPU;Configuration=Debug"
 ```
 
-If you have a different compiler works as long as you have the dotnet framework(s) I'm using 
+example build script PLATFORM=Any, CONFIG=Release
+
+```cmd
+@echo off
+call common-path
+msbuild /m ".sln\\sf2wav.sln" "/t:sf2wav" "/p:Platform=Any CPU;Configuration=Release"
+```
+If you have a different compiler works as long as you have the dotnet framework(s) I'm using and
+in this case, point your msbuild-bin path into the ENVIRONMENT-PATH in the console-shell.
+
 
 
